@@ -1,0 +1,43 @@
+{
+  "CORE_SKILLS": [
+    "python",
+    "sql",
+    "excel",
+    "communication",
+    "problem-solving",
+    "teamwork",
+    "critical thinking"
+  ],
+  "DATA_SCIENCE_SKILLS": [
+    "machine learning",
+    "deep learning",
+    "r",
+    "tableau",
+    "power bi",
+    "tensorflow",
+    "pytorch",
+    "scikit-learn",
+    "data mining",
+    "statistical analysis"
+  ],
+  "WEB_DEVELOPMENT_SKILLS": [
+    "javascript",
+    "html",
+    "css",
+    "react",
+    "angular",
+    "vue.js",
+    "node.js",
+    "mongodb",
+    "postgresql",
+    "git"
+  ],
+  "CLOUD_SKILLS": [
+    "aws",
+    "azure",
+    "google cloud",
+    "docker",
+    "kubernetes",
+    "terraform"
+  ]
+}
