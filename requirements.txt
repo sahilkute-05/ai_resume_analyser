@@ -1,0 +1,7 @@
+# requirements.txt
+streamlit
+pdfplumber
+scikit-learn
+requests
+beautifulsoup4
+lxml
