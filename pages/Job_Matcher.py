@@ -1,55 +1,86 @@
-# Job_Matcher.py (Finalized with Score Sorting)
+# pages/Job_Matcher.py (Final LLM Integration)
 
 import streamlit as st
 from backend.job_scraper import scrape_all_jobs
-from backend.match_engine import compute_match
-import operator # New import for efficient sorting
+from backend.llm_matcher import analyze_and_match_llm # NEW IMPORT
+import operator
+# Note: No need for compute_match, TfidfVectorizer, or manual keyword extraction imports!
 
 def main():
     st.title("💼 Job Matcher")
 
-    if "resume_text" not in st.session_state or st.session_state.resume_text is None:
+    # --- Initial Checks ---
+    if 'resume_text' not in st.session_state or st.session_state.resume_text is None:
         st.warning("Please upload and analyze your resume in the **Resume Analyzer** page first.")
         return 
+    
+    # NOTE: You must calculate seniority in Resume_Analyzer.py first!
+    if 'seniority_level' not in st.session_state:
+        st.session_state.seniority_level = "Unknown" 
+    
+    user_seniority = st.session_state.seniority_level
 
-    role = st.text_input("Enter job role (e.g., Data Analyst, ML Engineer)")
+    st.subheader(f"Candidate Seniority: {user_seniority}")
+    role = st.text_input("Enter target job role (e.g., Data Scientist, ML Engineer)")
 
     if role:
         st.write("Fetching live jobs...")
         jobs = scrape_all_jobs(role)
 
         if not jobs:
-            st.info("No jobs found or failed to scrape. Try a different role or check connection.")
+            st.info("No jobs found or failed to retrieve from API.")
             return
 
-        # --- Step 1: Calculate Scores and Store ---
         scored_jobs = []
-        with st.spinner('Calculating Match Scores...'):
+        with st.spinner('🤖 Analyzing Profile and Calculating Contextual Match Scores (This may take 10-20 seconds)...'):
             for job in jobs:
-                # Compute match score using the job description text
-                score = compute_match(job["description"], st.session_state.resume_text)
                 
-                # Add the score to the job dictionary
-                job["match_score"] = score 
-                scored_jobs.append(job)
+                # --- LLM MATCHING LOGIC ---
+                llm_result = analyze_and_match_llm(
+                    st.session_state.resume_text, 
+                    job["description"], 
+                    user_seniority # Pass user seniority for better analysis
+                )
+                
+                if llm_result is None: continue # Skip if API failed entirely
+                
+                # Extract structured data from LLM response
+                score = llm_result.get("SCORE", 0)
+                
+                job["match_score"] = score
+                job["shared_keywords"] = llm_result.get("SHARED_SKILLS", [])
+                job["missing_keywords"] = llm_result.get("MISSING_SKILLS", [])
+                job["llm_summary"] = llm_result.get("SUMMARY", "Score reason unavailable.")
+                job["llm_seniority"] = llm_result.get("SENIORITY_ESTIMATE", "N/A")
 
-        # --- Step 2: Sort Jobs ---
-        # Sort the jobs by 'match_score' in descending order (highest score first)
+                scored_jobs.append(job)
+                # --- END LLM MATCHING ---
+
+        # Sort the jobs by match score
         sorted_jobs = sorted(scored_jobs, key=operator.itemgetter('match_score'), reverse=True)
 
         st.subheader(f"Matched Jobs for '{role}' ({len(sorted_jobs)} total found, sorted by Match Score)")
         
-        # --- Step 3: Display Sorted Jobs ---
         for job in sorted_jobs:
             score = job["match_score"]
             
             st.markdown(f"### {job['title']} - Match Score: {score}%")
             
-            # Display New Fields
+            st.info(f"**Recruiter Analysis:** {job['llm_summary']}")
+            st.caption(f"LLM Estimated Job Seniority: {job['llm_seniority']}")
+            
+            # Display Shared Keywords
+            if job["shared_keywords"]:
+                st.success(f"**Top Shared Skills:** {', '.join(job['shared_keywords'][:8])}")
+            
+            # Display Missing Skills
+            if job["missing_keywords"]:
+                st.warning(f"**🚨 Missing Skills:** {', '.join(job['missing_keywords'][:5])}")
+            
+            # Display Metadata
             st.markdown(f"**Company:** {job.get('company', 'N/A')} | **Source:** **{job.get('source', 'N/A')}** | **Posted:** {job.get('posted_on', 'N/A')}")
             st.markdown(f"**Experience:** {job.get('experience', 'N/A')} | **Location:** {job.get('location', 'N/A')} | **Salary:** {job.get('salary', 'N/A')}")
             
-            # Link to the job
             st.write(f"[Read Full JD / Apply]({job['link']})")
             st.markdown("---") 
 

@@ -1,43 +1,85 @@
 {
   "CORE_SKILLS": [
-    "python",
-    "sql",
-    "excel",
-    "communication",
-    "problem-solving",
-    "teamwork",
-    "critical thinking"
+    "python", "sql", "excel", "communication", "problem-solving", 
+    "teamwork", "critical thinking", "leadership", "agile", "scrum",
+    "presentation", "documentation", "analysis", "time management", "adaptability", "creativity", "collaboration", "project management", "data visualization", "data cleaning", "data wrangling",
+    "data storytelling", "stakeholder management", "business acumen", "statistical analysis", "data-driven decision making",
+    "cloud computing", "version control", "git", "github", "data ethics", "privacy compliance", "problem solving",
+    "attention to detail", "multitasking", "self-motivation", "interpersonal skills", "empathy", "conflict resolution",
+    "time management", "organizational skills", "research skills", "analytical skills", "numerical skills",
+    "strategic thinking", "decision making", "negotiation skills", "presentation skills", "public speaking", "writing skills",
+    "adaptability", "creativity", "collaboration", "team management", "mentoring", "coaching",
+    "emotional intelligence", "stress management", "work ethic", "dependability", "initiative",
+    "customer service", "sales skills", "marketing skills", "networking", "business development"
   ],
-  "DATA_SCIENCE_SKILLS": [
-    "machine learning",
-    "deep learning",
-    "r",
-    "tableau",
-    "power bi",
-    "tensorflow",
-    "pytorch",
-    "scikit-learn",
-    "data mining",
-    "statistical analysis"
+  
+  "PROGRAMMING_LANGUAGES": [
+    "python", "java", "javascript", "typescript", "c++", "c#", "go", 
+    "golang", "rust", "kotlin", "swift", "r", "php", "ruby", "scala",
+    "perl", "haskell", "matlab", "shell scripting", "bash", "powershell", "html", "css", "sql"
   ],
-  "WEB_DEVELOPMENT_SKILLS": [
-    "javascript",
-    "html",
-    "css",
-    "react",
-    "angular",
-    "vue.js",
-    "node.js",
-    "mongodb",
-    "postgresql",
-    "git"
+
+  "AI_ML_FRAMEWORKS": [
+    "tensorflow", "pytorch", "scikit-learn", "keras", "transformers", 
+    "nlp", "natural language processing", "computer vision", "cv", "llms", 
+    "large language models", "generative ai", "openai", "prompt engineering", 
+    "rag", "retrieval-augmented generation", "vector databases", "mlflow", "hugging face", "fastai", "xgboost", "lightgbm", "catboost",
+    "opencv", "spaCy", "nltk", "gpt-3", "gpt-4", "dalle", "stable diffusion", "whisper", "chatgpt", "bert", "gpt-2", "t5",
+    "clip", "deep learning", "reinforcement learning", "supervised learning", "unsupervised learning", "cnn", "rnn", "gan",
+    "attention mechanisms", "seq2seq", "time series forecasting", "data augmentation", "hyperparameter tuning", "model deployment", "edge ai",
+    "mlops", "data preprocessing", "feature engineering", "model evaluation", "cross-validation", "dimensionality reduction",
+    "clustering", "regression analysis", "classification", "anomaly detection", "bayesian methods", "markov models", "svm", "random forests",
+    "decision trees", "ensemble methods", "gradient boosting", "autoencoders", "word embeddings", "topic modeling", "sentiment analysis",
+    "speech recognition", "image segmentation", "object detection"
   ],
-  "CLOUD_SKILLS": [
-    "aws",
-    "azure",
-    "google cloud",
-    "docker",
-    "kubernetes",
-    "terraform"
+  
+  "DATA_PLATFORMS": [
+    "machine learning", "deep learning", "tableau", "power bi", 
+    "data mining", "statistical analysis", "data analysis", "big data",
+    "modeling", "forecasting", "etl", "data warehouse", "data governance",
+    "databricks", "snowflake", "pandas", "numpy", "spark", "hadoop", "d3.js", "matplotlib", "seaborn", "plotly", "jupyter", "jupyter notebooks",
+    "data visualization", "data engineering", "data science", "data analytics", "aws s3", "google bigquery", "azure data factory"
+  ],
+  
+  "CLOUD_PLATFORMS": [
+    "aws", "amazon web services", "azure", "microsoft azure", "google cloud", 
+    "gcp", "cloud computing", "serverless", "lambda", "ec2", "s3", "blob storage", 
+    "virtual machines", "iac", "cloudformation", "aks", "eks", "gke", "cloud functions", "app engine", "cloud run"
+  ],
+  
+  "DEVOPS_TOOLS": [
+    "docker", "kubernetes", "terraform", "ansible", "jenkins", "gitlab", 
+    "cicd", "ci/cd", "devops", "monitoring", "prometheus", "grafana", 
+    "bash", "shell scripting", "github actions", "argocd", "istio", "helm", "flux", "openshift", "circleci", "travis ci", "puppet",
+    "chef", "nagios", "new relic", "splunk", "logstash", "elasticsearch", "kibana"
+  ],
+  
+  "TESTING_AND_QA": [
+    "selenium", "jest", "unit testing", "integration testing", "e2e testing", 
+    "junit", "cypress", "mocha", "tdd", "bdd", "automated testing", "qa", "quality assurance", "test automation", "postman",
+    "soapui", "load testing", "performance testing", "security testing", "pytest", "robot framework", "testng", "cucumber"
+  ],
+  
+  "WEB_FRONTEND": [
+    "react", "angular", "vue.js", "redux", "webpack", "babel", "sass", 
+    "frontend", "bootstrap", "tailwind css", "html", "css", "javascript", "typescript", "react js", "next.js"
+  ],
+  
+  "WEB_BACKEND": [
+    "node.js", "express.js", "django", "flask", "spring boot", 
+    "c#", ".net", "rest api", "graphql", "microservices", "api development", "java", "ruby on rails", "php", "laravel", "asp.net", "go"
+  ],
+  
+  "DATABASE_MANAGEMENT": [
+    "postgresql", "mongodb", "mysql", "mariadb", "oracle", "sql server", 
+    "nosql", "redis", "caching", "database design", "data modeling", 
+    "query optimization", "dynamodb", "firebase", "elasticsearch", "cockroachdb", "timescaledb", "neo4j", "sqlite", "db2", "sql"
+  ],
+  
+  "CYBERSECURITY": [
+    "security operations", "soc", "penetration testing", "pentesting", 
+    "firewalls", "siem", "encryption", "risk management", "compliance", "iso 27001", "nist", 
+    "vulnerability assessment", "cyber threat intelligence", "incident response", "ethical hacking", "cloud security", "identity and access management", "iam", "zero trust",
+    "malware analysis", "forensics", "ddos mitigation", "security audits", "gcp security", "aws security", "azure security"
   ]
 }

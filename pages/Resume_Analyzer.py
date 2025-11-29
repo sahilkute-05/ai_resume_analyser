@@ -4,6 +4,7 @@ import streamlit as st
 import pdfplumber
 from backend.resume_parser import extract_text_from_pdf, extract_skills
 from backend.ats_engine import compute_ats_score # [New Import]
+from backend.llm_matcher import detect_candidate_seniority # [Seniority Detection]
 
 def main():
     st.title("📄 Resume Analyzer")
@@ -15,6 +16,8 @@ def main():
         st.session_state.ats_score = None
     if 'ats_details' not in st.session_state:
         st.session_state.ats_details = None
+    if 'seniority_level' not in st.session_state:
+        st.session_state.seniority_level = "Unknown"
 
     uploaded_file = st.file_uploader("Upload your resume (PDF)", type=["pdf"])
 
@@ -36,6 +39,10 @@ def main():
         # Store ATS results for ATS_Score.py and Suggestions.py
         st.session_state.ats_score = score
         st.session_state.ats_details = details
+        
+        # --- Seniority Detection --- [New Logic]
+        seniority = detect_candidate_seniority(text)
+        st.session_state.seniority_level = seniority
 
         st.success("✅ Resume successfully analyzed! Check your score and suggestions using the sidebar.")
 
